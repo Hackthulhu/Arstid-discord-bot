@@ -39,8 +39,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           bot.sendMessage({to: channelID, message: "arstid." + stuff});
         }
 
-<<<<<<< HEAD
-=======
         //tell function sends the current values as a message
         function tell(){
           return bot.sendMessage({ to: channelID, message: "I am " + current.season +
@@ -53,18 +51,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
       //  if (cmd == "next"){};
 
->>>>>>> storecurrent
         //Commands for all seasons, if a season command comes in,
         //respond with randomized traits and flaws
         for (var i=0, len = seasonCommand.length; i < len; i++) {
           if (cmd == seasonCommand[i]){
             var pt = choose();
             var flaw = choose();
-<<<<<<< HEAD
-            bot.sendMessage({ to: channelID, message: "I am "+ cmd +"! \nPersonality Trait: " +
-              eval("season."+seasonCommand[i]+".personalityTrait[pt]") + "\nFlaw: " +
-              eval("season."+seasonCommand[i]+".flaw[flaw]")});
-=======
             //set state as the current.json
             current.season = cmd;
             current.personalityTrait = eval("season."+seasonCommand[i]+".personalityTrait[pt]");
@@ -72,7 +64,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             fs.writeFile("./current.json", JSON.stringify(current), (err) => console.error);
             //send the current state to the chat
             tell();
->>>>>>> storecurrent
           }
         };
     }

@@ -2,6 +2,7 @@ var Discord = require('discord.io');
 
 var logger = require('winston');
 var auth = require('./auth.json');
+var season = require('./seasons.json')
 
 
 // Configure logger settings
@@ -17,7 +18,7 @@ var bot = new Discord.Client({
     token: auth.token,
     autorun: true
 });
-
+function choose () {return Math.floor(Math.random() * 4)};
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
@@ -26,14 +27,9 @@ bot.on('ready', function (evt) {
 });
 
 bot.on('message', function (user, userID, channelID, message, evt) {
-    // Our bot needs to know if it needs to execute a command
-    // for this script it will listen for messages that will start with `!`
     if (message.substring(0, 7) == 'arstid.') {
         var args = message.substring(7).split(' ');
         var cmd = args[0];
-        var season = ["summer", "fall", "winter", "spring"];
-        var currentSeason = 3;
-
         args = args.splice(1);
 
         switch(cmd) {
@@ -42,23 +38,32 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 bot.sendMessage({ to: channelID, message: 'Pong!' });
             break;
             case 'summer':
-                currentSeason = 0;
-                bot.sendMessage({ to: channelID, message: "its summer"});
+              var pt = choose();
+              var flaw = choose();
+              bot.sendMessage({ to: channelID, message: "I am Summer! \nPersonality Trait: " +
+                season.summer.personalityTrait[pt] + "\nFlaw: " +
+                season.summer.flaw[flaw]});
             break;
             case 'fall':
-                currentSeason = 1;
-                bot.sendMessage({ to: channelID, message: "its fall"});
+              var pt = choose();
+              var flaw = choose();
+              bot.sendMessage({ to: channelID, message: "I am Fall! \nPersonality Trait: " +
+                season.fall.personalityTrait[pt] + "\nFlaw: " +
+                season.fall.flaw[flaw]});
             break;
             case 'winter':
-                currentSeason = 2;
-                bot.sendMessage({ to: channelID, message: "its winter"});
+              var pt = choose();
+              var flaw = choose();
+              bot.sendMessage({ to: channelID, message: "I am Winter! \nPersonality Trait: " +
+                season.winter.personalityTrait[pt] + "\nFlaw: " +
+                season.winter.flaw[flaw]});
             break;
             case 'spring':
-                currentSeason = 3;
-                bot.sendMessage({ to: channelID, message: "its spring"});
-            break;
-            case 'what':
-                bot.sendMessage({ to: channelID, message: "arstid." + season[currentSeason]})
+              var pt = choose();
+              var flaw = choose();
+              bot.sendMessage({ to: channelID, message: "I am Spring! \nPersonality Trait: " +
+                season.spring.personalityTrait[pt] + "\nFlaw: " +
+                season.spring.flaw[flaw]});
             break;
             default:
                 bot.sendMessage({ to: channelID, message: 'Unknown command.' });

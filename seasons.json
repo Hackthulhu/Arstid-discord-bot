@@ -1,0 +1,58 @@
+{
+"summer": {
+    "personalityTrait": [
+      "You believe that direct confrontation is the best way to solve problems." ,
+      "Overwhelming force can accomplish almost anything. The tougher the problem,the more force you apply.",
+      "You stand tall and strong so that others can lean on you.",
+      "You maintain an intimidating front. It’s better to prevent fights with a show of force than to harm others."
+    ],
+    "flaw": [
+      "You are stubborn. Let others change.",
+      "The best option is one that is swift, unexpected, and overwhelming.",
+      "Punch first. Talk later.",
+      "Your fury can carry you through anything."
+    ]
+  },
+  "fall": {
+    "personalityTrait":[
+      "If someone is in need, you never withhold aid",
+      "You share what you have, with little regard for your own needs.",
+      "There are no simple meals, only lavish feasts.",
+      "You stock up on fine food and drink. You hate going without such comforts"
+    ],
+    "flaw":[
+      "You trust others without a second thought.",
+      "You give to others, to the point that you leave yourself without necessary supplies.",
+      "Everyone is your friend, or a potential friend.",
+      "You spend excessively on creature comforts."
+    ]
+  },
+  "winter": {
+    "personalityTrait":[
+      "The worst case is the most likely to occur.",
+      "You preserve what you have. Better to be hungry today and have food for tomorrow.",
+      "Life is full of dangers, but you are ready for them.",
+      "A penny spent is a penny lost forever."
+    ],
+    "flaw":[
+      "Everything dies eventually. Why bother building anything that is supposedly meant to last?",
+      "Nothing matters to you, and you allow others to guide your actions.",
+      "Your needs come first. In winter, all must watch out for themselves.",
+      "You speak only to point out the flaws in others’ plans."
+    ]
+  },
+  "spring": {
+    "personalityTrait":[
+      "Every day is the greatest day of your life.",
+      "You approach everything with enthusiasm, even the most mundane chores.",
+      "You love music and song. You supply a tune yourself if no one else can.",
+      "You can’t stay still."
+    ],
+    "flaw":[
+      "You overdrink.",
+      "Toil is for drudges. Yours should be a life of leisure.",
+      "A pretty face infatuates you in an instant, but your fancy passes with equal speed.",
+      "Anything worth doing is worth doing again and again."
+    ]
+  }
+}

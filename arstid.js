@@ -49,7 +49,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           tell();
         }
 
-      //  if (cmd == "next"){};
+        if (cmd == "next"){
+          var seasonIndex = seasonCommand.indexOf(current.season);
+          seasonIndex = (seasonIndex + 1) % 4;
+          bot.sendMessage({to: channelID, message: "arstid." + seasonCommand[seasonIndex]});
+        };
 
         //Commands for all seasons, if a season command comes in,
         //respond with randomized traits and flaws

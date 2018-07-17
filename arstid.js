@@ -1,6 +1,9 @@
 var Discord = require('discord.io');
+const fs = require("fs");
 var logger = require('winston');
 var auth = require('./auth.json');
+var season = require('./seasons.json');
+var current = require('./current.json');
 
 // Configure logger settings
 logger.remove(logger.transports.Console);

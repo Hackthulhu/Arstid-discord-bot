@@ -1,7 +1,7 @@
 {
   "name": "arstid-bot",
   "version": "1.0.0",
-  "description": "Eldarin Random Personality Bod",
+  "description": "Eldarin Random Personality Bot",
   "main": "arstid.js",
   "repository": "git@github.com:Hackthulhu/Arstid-discord-bot.git",
   "author": "Galen Evans",

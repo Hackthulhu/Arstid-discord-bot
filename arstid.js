@@ -31,43 +31,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         var args = message.substring(7).split(' ');
         var cmd = args[0];
         args = args.splice(1);
-
-        switch(cmd) {
-            // !ping
-            case 'ping':
-                bot.sendMessage({ to: channelID, message: 'Pong!' });
-            break;
-            case 'summer':
-              var pt = choose();
-              var flaw = choose();
-              bot.sendMessage({ to: channelID, message: "I am Summer! \nPersonality Trait: " +
-                season.summer.personalityTrait[pt] + "\nFlaw: " +
-                season.summer.flaw[flaw]});
-            break;
-            case 'fall':
-              var pt = choose();
-              var flaw = choose();
-              bot.sendMessage({ to: channelID, message: "I am Fall! \nPersonality Trait: " +
-                season.fall.personalityTrait[pt] + "\nFlaw: " +
-                season.fall.flaw[flaw]});
-            break;
-            case 'winter':
-              var pt = choose();
-              var flaw = choose();
-              bot.sendMessage({ to: channelID, message: "I am Winter! \nPersonality Trait: " +
-                season.winter.personalityTrait[pt] + "\nFlaw: " +
-                season.winter.flaw[flaw]});
-            break;
-            case 'spring':
-              var pt = choose();
-              var flaw = choose();
-              bot.sendMessage({ to: channelID, message: "I am Spring! \nPersonality Trait: " +
-                season.spring.personalityTrait[pt] + "\nFlaw: " +
-                season.spring.flaw[flaw]});
-            break;
-            default:
-                bot.sendMessage({ to: channelID, message: 'Unknown command.' });
-
-        }
+        //Commands for all seasons, if a season command comes in,
+        //respond with randomized traits and flaws
+        var seasonCommand = ["summer", "fall", "winter", "spring"];
+        for (var i=0, len = seasonCommand.length; i < len; i++) {
+          if (cmd == seasonCommand[i]){
+            var pt = choose();
+            var flaw = choose();
+            bot.sendMessage({ to: channelID, message: "I am "+ cmd +"! \nPersonality Trait: " +
+              eval("season."+cmd+".personalityTrait[pt]") + "\nFlaw: " +
+              eval("season."+cmd+".flaw[flaw]")});
+          }
+        };
     }
 })

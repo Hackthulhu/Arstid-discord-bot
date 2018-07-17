@@ -1,9 +1,9 @@
 {
-  "name": "greeter-bot",
+  "name": "arstid-bot",
   "version": "1.0.0",
-  "description": "Greeter bot for Renesansz-Playground",
-  "main": "bot.js",
-  "repository": "git@github.com:renesansz/discord-greeter-bot.git",
+  "description": "Eldarin Random Personality Bod",
+  "main": "arstid.js",
+  "repository": "git@github.com:Hackthulhu/Arstid-discord-bot.git",
   "author": "Galen Evans",
   "dependencies": {
     "discord.io": "github:woor/discord.io#gateway_v6",

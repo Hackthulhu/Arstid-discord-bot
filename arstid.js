@@ -1,9 +1,6 @@
 var Discord = require('discord.io');
-
 var logger = require('winston');
 var auth = require('./auth.json');
-var season = require('./seasons.json')
-
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -39,15 +36,40 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           bot.sendMessage({to: channelID, message: "arstid." + stuff});
         }
 
+<<<<<<< HEAD
+=======
+        //tell function sends the current values as a message
+        function tell(){
+          return bot.sendMessage({ to: channelID, message: "I am " + current.season +
+            "!\nPersonality Trait: " + current.personalityTrait + "\nFlaw: " + current.flaw});
+        };
+
+        if (cmd == "status"){
+          tell();
+        }
+
+      //  if (cmd == "next"){};
+
+>>>>>>> storecurrent
         //Commands for all seasons, if a season command comes in,
         //respond with randomized traits and flaws
         for (var i=0, len = seasonCommand.length; i < len; i++) {
           if (cmd == seasonCommand[i]){
             var pt = choose();
             var flaw = choose();
+<<<<<<< HEAD
             bot.sendMessage({ to: channelID, message: "I am "+ cmd +"! \nPersonality Trait: " +
               eval("season."+seasonCommand[i]+".personalityTrait[pt]") + "\nFlaw: " +
               eval("season."+seasonCommand[i]+".flaw[flaw]")});
+=======
+            //set state as the current.json
+            current.season = cmd;
+            current.personalityTrait = eval("season."+seasonCommand[i]+".personalityTrait[pt]");
+            current.flaw = eval("season."+seasonCommand[i]+".flaw[flaw]");
+            fs.writeFile("./current.json", JSON.stringify(current), (err) => console.error);
+            //send the current state to the chat
+            tell();
+>>>>>>> storecurrent
           }
         };
     }

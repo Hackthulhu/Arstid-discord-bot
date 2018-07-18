@@ -61,19 +61,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         if (cmd == "random"){
           var stuff = seasonCommand[choose()];
           cycle(stuff);
-        }
-
-        //calls the tell function when arstid.status is called
-        if (cmd == "status"){
+        }else if (cmd == "status"){
           tell();
-        }
-
-        //Iterates to the next season run on long rest to get new traits.
-        if (cmd == "next"){
+        }else if (cmd == "next"){
           var seasonIndex = seasonCommand.indexOf(current.season);
           seasonIndex = (seasonIndex + 1) % 4;
           var stuff = seasonCommand[seasonIndex];
           cycle(stuff);
-        };
+        }else if (seasonCommand.includes(cmd)){
+          cycle(cmd);
+        }else {
+          bot.sendMessage({to: channelID, message: "Im sorry, I dont know how to do that"});
+        }
       }
     });

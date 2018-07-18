@@ -8,5 +8,12 @@
   "dependencies": {
     "discord.io": "github:woor/discord.io#gateway_v6",
     "winston": "^2.3.1"
+  },
+  "keywords": [
+    "heroku",
+    "discord.js"
+  ],
+  "scripts": {
+    "start": "node arstid.js"
   }
 }

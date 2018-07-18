@@ -33,42 +33,47 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         var seasonCommand = ["summer", "fall", "winter", "spring"];
 
-        //random initalizer called via arstid.random chooses random season and sends season command
-        if (cmd == "random"){
-          var stuff = seasonCommand[choose()];
-          bot.sendMessage({to: channelID, message: "arstid." + stuff});
-        }
-
         //tell function sends the current values as a message
         function tell(){
           return bot.sendMessage({ to: channelID, message: "I am " + current.season +
             "!\nPersonality Trait: " + current.personalityTrait + "\nFlaw: " + current.flaw});
         };
 
+        //Commands for all seasons, if a season command comes in,
+        //respond with randomized traits and flaws
+        function cycle(stuff){
+          for (var i=0, len = seasonCommand.length; i < len; i++) {
+            if (stuff == seasonCommand[i]){
+              var pt = choose();
+              var flaw = choose();
+              //set state as the current.json
+              current.season = stuff;
+              current.personalityTrait = eval("season."+seasonCommand[i]+".personalityTrait[pt]");
+              current.flaw = eval("season."+seasonCommand[i]+".flaw[flaw]");
+              fs.writeFile("./current.json", JSON.stringify(current), (err) => console.error);
+              //send the current state to the chat
+              tell();
+            }
+        };
+        }
+
+        //random initalizer called via arstid.random chooses random season and sends season command
+        if (cmd == "random"){
+          var stuff = seasonCommand[choose()];
+          cycle(stuff);
+        }
+
+        //calls the tell function when arstid.status is called
         if (cmd == "status"){
           tell();
         }
 
+        //Iterates to the next season run on long rest to get new traits.
         if (cmd == "next"){
           var seasonIndex = seasonCommand.indexOf(current.season);
           seasonIndex = (seasonIndex + 1) % 4;
-          bot.sendMessage({to: channelID, message: "arstid." + seasonCommand[seasonIndex]});
+          var stuff = seasonCommand[seasonIndex];
+          cycle(stuff);
         };
-
-        //Commands for all seasons, if a season command comes in,
-        //respond with randomized traits and flaws
-        for (var i=0, len = seasonCommand.length; i < len; i++) {
-          if (cmd == seasonCommand[i]){
-            var pt = choose();
-            var flaw = choose();
-            //set state as the current.json
-            current.season = cmd;
-            current.personalityTrait = eval("season."+seasonCommand[i]+".personalityTrait[pt]");
-            current.flaw = eval("season."+seasonCommand[i]+".flaw[flaw]");
-            fs.writeFile("./current.json", JSON.stringify(current), (err) => console.error);
-            //send the current state to the chat
-            tell();
-          }
-        };
-    }
-})
+      }
+    });

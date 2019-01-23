@@ -30,6 +30,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 7) == 'arstid.') {
         var args = message.substring(7).split(' ');
         var cmd = args[0];
+        if (cmd =="jump"){var days = args[1]}
         args = args.splice(1);
         var seasonCommand = ["summer", "fall", "winter", "spring"];
 
@@ -70,6 +71,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           cycle(stuff);
         }else if (seasonCommand.includes(cmd)){
           cycle(cmd);
+        }else if (cmd =="jump"){
+          if (isNaN(days)){
+            bot.sendMessage({to: channelID, message: "You did not use a number for your jump days function, please try again"})
+          } else {
+            var seasonIndex = seasonCommand.indexOf(current.season);
+            seasonIndex = (seasonIndex + days + 1) % 4;
+            var stuff = seasonCommand[seasonIndex];
+            cycle(stuff);
+          };
+
         }else {
           bot.sendMessage({to: channelID, message: "Im sorry, I dont know how to do that"});
         }
